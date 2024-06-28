@@ -19,15 +19,15 @@ void QuickSort(int arr[],int low,int high)
     if(low<high)
     {
         int j = partion(arr,low,high);
-        QuickSort(arr,low,j-1);
+        QuickSort(arr,low,j);
         QuickSort(arr,j+1,high);
     }
 }
 int main()
 {
-    int arr[] = {44,33,11,55,77,90,40,60,99,22,88,66};
+    int arr[] = {7,9,6,1,3,5,10};
     int len = sizeof(arr)/sizeof(arr[0]);
-    QuickSort(arr,0,len-1);
+    QuickSort(arr,0,len);
     for(int i=0;i<len;i++) cout<<arr[i]<<" ";
     return 0;
 }
