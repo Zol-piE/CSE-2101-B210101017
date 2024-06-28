@@ -46,6 +46,10 @@ public:
         }
         return temp;
     }
+    int getFront()
+    {
+        return Front->data;
+    }
 };
 int main()
 {
@@ -58,7 +62,7 @@ int main()
     qt.enqueue(14);
     qt.enqueue(15);
     qt.enqueue(17);
-
+    cout<<"Get Front "<<qt.getFront()<<endl;
 
     for(int i=0;i<3;i++) cout<<qt.dequeue()<<endl;
 
