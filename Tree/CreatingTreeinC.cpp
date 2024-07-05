@@ -23,7 +23,7 @@ public:
     int Size;
     int Front;
     int Rear;
-    node **Q;
+    node **Q; //  A pointer that holds the address of another pointer, which in turn holds the address of a 'node' object.
     qnode(int S)
     {
         this->Size =S;
