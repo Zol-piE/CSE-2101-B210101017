@@ -52,6 +52,18 @@ void leftPrint(node *temp)
     }
     cout<<endl;
 }
+void leftPrintPre(node *root,int level)
+{
+    static int maxlevel =0;
+    if(root==NULL) return;
+    if(maxlevel < level)
+    {
+        cout<<root->data<< " ";
+        maxlevel = level;
+    }
+    leftPrintPre(root->left,level+1);
+    leftPrintPre(root->right,level+1);
+}
 int main()
 {
     freopen("input.txt","r",stdin);
@@ -64,5 +76,6 @@ int main()
     }
     inorder(root); cout<<endl;
     leftPrint(root);
+    leftPrintPre(root,1);
     return 0;
 }
