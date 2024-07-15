@@ -62,7 +62,16 @@ int Height(node *p)
 	}
 	return 0;
 }
-
+int sumOfNodes(node *p)
+{
+    if(p!=NULL)
+    {
+        int x = sumOfNodes(p->left);
+        int y = sumOfNodes(p->right);
+        return x+y+ p->data;
+    }
+    return 0;
+}
 void postorder(node *p)
 {
 	if(p != NULL)
@@ -80,7 +89,8 @@ int main()
 	obj->create();
 	cout<<"postorder : ";
 	postorder(obj->root);cout<<endl;
-	
+
 	cout<<"Height Of Tree : "<<Height(obj->root)<<endl;
+	cout<<"Sum of Nodes : "<<sumOfNodes(obj->root)<<endl; 
 	return 0;
 }

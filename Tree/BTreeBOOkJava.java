@@ -1,3 +1,4 @@
+package JavaCodes;
 import java.util.Scanner;
 
 /**
@@ -9,7 +10,7 @@ class node
     public node left;
     public node right;
 }
-public class TreeJava {
+public class BTreeBOOkJava {
 
     static node create(node temp,int info)
     {
