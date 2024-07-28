@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 class node
 {
@@ -16,9 +17,11 @@ class Bst
 {
 public:
     node *root;
+    Bst() { root = NULL; }
     node* insertNode(node *root,int key);
     node* Delete(node *root,int key);
     void inorder(node *root);
+    void levelOrder(node *root);
 
 };
 node* Bst ::  insertNode(node *root,int data)
@@ -39,6 +42,23 @@ void Bst :: inorder(node *root)
         inorder(root->left);
         cout<<root->data<< " ";
         inorder(root->right);
+    }
+}
+void Bst::levelOrder(node *root)
+{
+    queue<node*> qt;
+    qt.push(root);
+    while(!qt.empty())
+    {
+        int n = qt.size();
+        for(int i=1;i<=n;i++)
+        {
+            node *temp = qt.front();qt.pop();
+            cout<<temp->data<< " ";
+            if(temp->left != NULL) qt.push(temp->left);
+            if(temp->right!=NULL) qt.push(temp->right);
+        }
+        cout<<endl;
     }
 }
 node *findMax(node *root)
@@ -95,6 +115,27 @@ node* Bst :: Delete(node *root,int key)
 int main()
 {
     Bst tree;
-    tree.root = tree.insertNode()
+    tree.root = tree.insertNode(tree.root,15);
+    tree.insertNode(tree.root,10);
+    tree.insertNode(tree.root,20);
+    tree.insertNode(tree.root,5);
+    tree.insertNode(tree.root,13);
+    tree.insertNode(tree.root,18);
+    tree.insertNode(tree.root,30);
+    tree.insertNode(tree.root,7);
+    tree.insertNode(tree.root,40);
+    tree.insertNode(tree.root,6);
+    tree.insertNode(tree.root,35);
+    tree.insertNode(tree.root,50);
+    tree.insertNode(tree.root,37);
+
+    tree.levelOrder(tree.root);
+
+    cout<<"After Deleting"<<endl;
+    tree.Delete(tree.root,37);
+    tree.Delete(tree.root,5);
+    tree.Delete(tree.root,20);
+    tree.levelOrder(tree.root);
+
     return 0;
 }
