@@ -1,26 +1,44 @@
-num = [10,15,7,3,50]
+import random
+
+# Function to generate random unique integers
+def randomIn(n):
+    arr = []
+    i = 0
+    while i < n:
+        x = random.randint(1, 10)
+        if x not in arr:
+            arr.append(x)
+            i += 1
+    return arr
+
+def partition(arr,low,high):
+    pivot = arr[low]
+    i = low
+    j = high
+    while i<j:
+        i+=1
+        while i<high and arr[i]<=pivot:
+            i+=1
+        j-=1
+        while arr[j]>pivot:
+            j-=1
+
+        if(i<j):
+            arr[i],arr[j] = arr[j],arr[i]
+            
+    arr[low],arr[j] = arr[j],arr[low]
+    return j
+    
+def quicksort(arr,low,high):
+    if low <high:
+        pi = partition(arr,low,high)
+        quicksort(arr,low,pi)
+        quicksort(arr,pi+1,high)
+
+# Main program
 n = 5
-def quicksort(num,low,high):
-   if(low<high):
-      p = partitiond(num,low,high)
-      quicksort(num,low,p-1)
-      quicksort(num,p+1,high)
+arr = randomIn(n)
+print("Unsorted array:", arr)
 
-def partitiond(num,low,high):
-   pivot = num[low]
-   i = low
-   j = high
-   while i<j:
-      
-      while num[i] < pivot:
-         i+=1
-      while num[j]>pivot:
-         j-=1
-      if(i<j):
-         num[i],num[j] = num[j],num[i]
-   num[low],num[j] = num[j],num[low]
-   return j
-
-print(num)
-quicksort(num,low=0,high=n-1)
-print(num)
+quicksort(arr, 0, n)
+print("Sorted array:", arr)
