@@ -5,13 +5,13 @@ using namespace std;
 typedef vector<int> vec;
 int initializer(vector<int> &arr,int n)
 {
-    srand(time(0));
-    vector<bool> vis(n*2,false);
+
+    vector<bool> vis(50,false);
     vis[0]=true;
     int i =0;
     while(i<n)
     {
-        int x = rand()%12;
+        int x = rand()%51;
         if(vis[x]==false)
         {
             vis[x]=true;
@@ -45,11 +45,11 @@ void subMerge(vec &arr,int low,int mid,int high)
     int k = low,i = 0,j =0;
     while(i<n1 && j<n2)
     {
-        if(s1[i]>=s2[j])
+        if(s1[i]<=s2[j])
         {
-            arr[k++] = s2[j++];
+            arr[k++] = s1[i++];
         }
-        else arr[k++] = s1[i++];
+        else arr[k++] = s2[j++];
     }
     while(i<n1) arr[k++] = s1[i++];
 
@@ -71,6 +71,7 @@ void mergeSort(vec &arr,int low,int high)
 int main()
 {
     fast
+    srand(time(0));
     int n = 10;
     vector<int>arr;
     initializer(arr,n);
