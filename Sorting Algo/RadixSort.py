@@ -1,38 +1,30 @@
 num = [170, 45, 75, 90, 802, 24, 2, 66]
 n = len(num)
+def countSort(num,n,ex,base):
+    con = [0]*base
+    op = [0]*n
+    for i in range(0,n):
+        index = (num[i]//ex)%10
+        con[index]+=1
 
-def countingSort(num, ex, n, base):
-    con = [0] * base  # Count array
-    op = [0] * n  # Output array
+    for i in range(1,base):
+        con[i] +=con[i-1]
 
-    # Count occurrences of digits
-    for i in range(n):
-        index = (num[i] // ex) % base
-        con[index] += 1
-
-    # Update count array to store positions
-    for i in range(1, base):
-        con[i] += con[i - 1]
-
-    # Build output array (iterate backwards for stability)
-    for i in range(n - 1, -1, -1):
-        index = (num[i] // ex) % base
-        op[con[index] - 1] = num[i]
-        con[index] -= 1
-
-    # Copy sorted elements back to original array
-    for i in range(n):
+    for i in range(n-1,-1,-1):
+        index = (num[i]//ex)%10
+        op[con[index]-1] = num[i]
+        con[index]-=1
+    print("Output",op)
+    for i in range(0,n):
         num[i] = op[i]
 
+print("Print Before Sort",num)
+def radixSort(num,n):
+    mx = max(num)
+    ex =1
+    while mx//ex>0:
+        countSort(num,n,ex,10)
+        ex *=10
 
-def RadixSort(num, n):
-    mx = max(num)  # Find the maximum number
-    ex = 1  # Start with the least significant digit
-
-    while mx // ex > 0:
-        countingSort(num, ex, n, 10)
-        ex *= 10
-
-
-RadixSort(num, n)
+radixSort(num,n)
 print(num)
